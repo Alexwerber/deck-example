@@ -1,59 +1,62 @@
 #include <stdio.h>
 
-const int Nmax = 11;
+const int Nmax = 10;
 
 struct deck
 {
-   int elem[Nmax], end, begin;
+   int elem[Nmax], begin, length;
 };
 deck Q;
 
 bool isFull()                       // Проверка на заполненость
 {
-   return Q.begin == (Q.end + 1) % Nmax;
+   return Q.length == Nmax;
 }
 
 bool isEmpty()                      // Проверка на пустоту
 {
-   return Q.begin == Q.end;
+   return Q.length == 0;
 }
 
 void del()                    // Очистка дека
 {
    Q.begin = 0;
-   Q.end = 0;
+   Q.length = 0;
    printf("Дек очищен\n");
 }
 
 int popFront()                 // Взятие элемента из начала дека
 {
-   int date;
+   int datum = 0;
    if(isEmpty())               
       printf("Дек пуст\n");
    else
    {
-      date = Q.elem[Q.begin];
+      datum = Q.elem[Q.begin];
       Q.begin = (Q.begin + 1) % Nmax;
-      printf("Взятый элемент: %d\n", date);
+      Q.length -= 1;
+      printf("Взятый элемент: %d\n", datum);
    }
-   return date;
+   return datum;
 }
 
 int popBack()                // Взятие элемента из конца дека
 {
+   int datum = 0;
    if(isEmpty())               
       printf("Дек пуст\n");
    else
    {
-      Q.end = (Q.end - 1 + Nmax) % Nmax;
-      printf("Взятый элемент: %d\n", Q.elem[Q.end]);
+      datum = Q.elem[(Q.begin + Q.length - 1) % Nmax];   
+      Q.length -= 1;
+      printf("Взятый элемент: %d\n", datum);
    }
-   return Q.elem[Q.end];
+   return datum;
 }
 
 void pushFront()                   // Добавление элемента в начало дека 
 {
-   int n, data;   
+   int n, datum;   
    if(isFull())            
       printf("Дек полон\n");
    else
@@ -63,16 +66,17 @@ void pushFront()                   // Добавление элемента в �
       printf("Введите число(а): ");
       for(int i = 0; !isFull() && i < n; i++)
       {
-         scanf("%d", &data);
+         scanf("%d", &datum);
          Q.begin = (Q.begin - 1 + Nmax) % Nmax;
-         Q.elem[Q.begin] = data;
+         Q.elem[Q.begin] = datum;
+         Q.length += 1;
       }
    }
 }
 
 void pushBack()                          // Добавление элемента в конец дека
 {
-   int n, data;   
+   int n, datum;   
    if(isFull())            
       printf("Дек полон\n");
    else
@@ -82,11 +86,17 @@ void pushBack()                          // Добавление элемент�
       printf("Введите число(а): ");
       for(int i = 0; !isFull() && i < n; i++)
       {
-         scanf("%d", &data);
-         Q.elem[Q.end] = data;
-         Q.end = (Q.end + 1) % Nmax;
+         scanf("%d", &datum);
+         Q.elem[(Q.begin + Q.length) % Nmax] = datum;
+         Q.length += 1;
       }
    }
+}
+
+void print()
+{
+   for(int i = 0; i < Q.length; i++)
+      printf("Элемент %d - %d \n", i, Q.elem[(Q.begin + i) % Nmax]);
 }
 
 int main()
@@ -122,6 +132,7 @@ int main()
             case 5 : popFront(); break;
             case 6 : popBack(); break;
             case 7 : exitFlag = true; break;
+            case 8 : print(); break;
             default : printf("ОШИБКА : неверный номер команды\n");
                       repFlag = true;
          }
