@@ -5,6 +5,7 @@
 
 const int Nmax = 10;
 
+namespace deck{  
 struct deck
 {
    int elem[Nmax], begin, length;
@@ -23,5 +24,5 @@ int popBack(deck &Q);
 void pushFront(deck &Q);
 
 void pushBack(deck &Q);
-
+ }
 #endif

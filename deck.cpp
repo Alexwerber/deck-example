@@ -1,7 +1,7 @@
-#include "DECK.h"
+#include "deck.h"
 #include "stdio.h"
 
-namespase deck
+namespace deck
 {
 bool isFull(deck &Q)
 {

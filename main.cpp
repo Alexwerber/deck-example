@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "DECK.h"
+#include "deck.h"
 
 int main()
 {   
