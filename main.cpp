@@ -27,12 +27,12 @@ int main()
          }
          switch(n)
          {
-            case 1 : Deck::del(Q); break;
-            case 2 : Deck::isEmpty(Q) == true ? printf("Дек пуст\n") : printf("Дек не пуст\n"); break;
-            case 3 : Deck::pushFront(Q); break;
-            case 4 : Deck::pushBack(Q); break;
-            case 5 : Deck::popFront(Q); break;
-            case 6 : Deck::popBack(Q); break;
+            case 1 : deck::del(Q); break;
+            case 2 : isEmpty(Q) == true ? printf("Дек пуст\n") : printf("Дек не пуст\n"); break;
+            case 3 : pushFront(Q); break;
+            case 4 : pushBack(Q); break;
+            case 5 : popFront(Q); break;
+            case 6 : popBack(Q); break;
             case 7 : exitFlag = true; break;
             default : printf("ОШИБКА : неверный номер команды\n");
                       repFlag = true;

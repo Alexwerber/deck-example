@@ -3,26 +3,26 @@
 
 #include <stdlib.h>
 
-namespace Deck {
-  const int Nmax = 10;
+const int Nmax = 10;
 
-  struct deck
-  {
-    int elem[Nmax], begin, length;
-  };
+namespace deck{  
+struct deck
+{
+   int elem[Nmax], begin, length;
+};
 
-  bool isFull(deck &Q); // Проверка на заполненность
+bool isFull(deck &Q); // Проверка на заполненность
 
-  bool isEmpty(deck &Q);  // Проверка на пустоту
+bool isEmpty(deck &Q);  // Проверка на пустоту
 
-  void del(deck &Q); // Очистка дека
+void del(deck &Q); // Очистка дека
 
-  int popFront(deck &Q);
+int popFront(deck &Q);
 
-  int popBack(deck &Q);
+int popBack(deck &Q);
 
-  void pushFront(deck &Q);
+void pushFront(deck &Q);
 
-  void pushBack(deck &Q);
-}
+void pushBack(deck &Q);
+ }
 #endif
